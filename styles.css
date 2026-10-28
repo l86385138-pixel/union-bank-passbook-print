@@ -91,3 +91,43 @@ main{max-width:1500px;margin:0 auto;padding:0}
  #app.retailer-mode .sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
  #app.retailer-mode .quick-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+/* Retailer-first Passbook Print Portal dashboard */
+.portal-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;padding:14px 22px;margin:-14px -22px 20px;box-shadow:0 2px 7px #102b4310}
+.portal-topbar h2{font-size:21px;margin:0;color:#252525}
+.portal-topbar span{color:#667085;font-size:13px}
+#app.retailer-mode .welcome{display:none}
+#app.retailer-mode .sidebar-layout{grid-template-columns:240px minmax(0,1fr);gap:0}
+#app.retailer-mode .dash-content{padding:0 22px 28px;background:#f3f5f8}
+#app.retailer-mode .portal-topbar{position:sticky;top:0;z-index:3}
+#app.retailer-mode .sidebar{position:sticky;top:0;min-height:100vh}
+#app.retailer-mode .dashboard-panel{margin-top:20px}
+#app.retailer-mode .dashboard-panel .stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+#app.retailer-mode .dashboard-panel .retailer-stat{display:none}
+#app.retailer-mode .assigned-branch{padding:22px}
+#app.retailer-mode .branch-meta{margin-top:8px;color:#344054;line-height:1.5}
+#app.retailer-mode .quick-actions{grid-template-columns:repeat(3,minmax(0,1fr))}
+#app.retailer-mode .quick-actions #quickAddRetailer{display:none!important}
+#app.retailer-mode .quick-actions #quickLogout{display:none!important}
+#app.retailer-mode .quick-actions button{min-height:60px}
+#app.retailer-mode #customerPanel,#app.retailer-mode #recordsPanel{margin-top:20px}
+#app.retailer-mode #customerForm.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+#app.retailer-mode #customerForm .wide{grid-column:1/-1}
+#app.retailer-mode .sidebar button[data-target="dashboardPanel"],
+#app.retailer-mode .sidebar button[data-target="customerPanel"],
+#app.retailer-mode .sidebar button[data-target="recordsPanel"]{display:block}
+#app.retailer-mode .sidebar button.admin-only{display:none!important}
+#app.retailer-mode .sidebar::after{content:"";display:block;flex:1}
+@media(max-width:850px){
+ #app.retailer-mode .sidebar-layout{grid-template-columns:1fr}
+ #app.retailer-mode .sidebar{position:static;min-height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ #app.retailer-mode .sidebar .brand{grid-column:1/-1}
+ #app.retailer-mode .dash-content{padding:0 12px 20px}
+ #app.retailer-mode .portal-topbar{margin:0 -12px 14px;padding:14px 12px}
+ #app.retailer-mode .quick-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+ #app.retailer-mode #customerForm.grid{grid-template-columns:1fr}
+ #app.retailer-mode #customerForm .wide{grid-column:auto}
+ #app.retailer-mode .dashboard-panel .stat-grid{grid-template-columns:1fr}
+}
