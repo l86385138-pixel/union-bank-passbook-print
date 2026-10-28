@@ -24,7 +24,7 @@ let role = "";
 let records = [];
 let retailerRecords = [];
 
-const fields = ["customerName", "accountNumber", "nameTitle", "branchName", "branchPhone", "branchAddress", "customerId", "guardianName", "relation", "aadhaarMasked", "name2", "name3", "occupation", "address", "openingDate", "issueDate", "modeOperation", "villageAddress", "postOffice", "policeStation", "district", "state", "country", "nomination"];
+const fields = ["customerName", "accountNumber", "nameTitle", "branchName", "branchPhone", "ifscCode", "branchAddress", "customerId", "guardianName", "relation", "aadhaarMasked", "name2", "name3", "occupation", "address", "openingDate", "issueDate", "modeOperation", "villageAddress", "postOffice", "policeStation", "district", "state", "country", "nomination"];
 
 $("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
@@ -263,14 +263,14 @@ function preparePrint() {
   const data = formData();
   const mapping = {
     customerName: ["pName", "pName2"], accountNumber: ["pAccount", "pAccount2"], nameTitle: ["pTitle"],
-    branchName: ["pBranch", "pBranch2"], branchPhone: ["pPhone"],
-    branchAddress: ["pBranchAddress"], customerId: ["pCustomerId"],
+    branchName: ["pBranch", "pBranch2"], branchPhone: ["pPhone", "pPhone2"], ifscCode: ["pIfsc"],
+    branchAddress: ["pBranchAddress", "pBranchAddress2"], customerId: ["pCustomerId"],
     guardianName: ["pGuardian"], relation: ["pRelation"],
     aadhaarMasked: ["pAadhaar"], name2: ["pNameSecond"], name3: ["pNameThird"],
     occupation: ["pOccupation"], address: ["pAddress"],
     openingDate: ["pDate"], issueDate: ["pIssueDate"], modeOperation: ["pModeOperation"],
     villageAddress: ["pVillage"], postOffice: ["pPostOffice"], policeStation: ["pPoliceStation"],
-    district: ["pDistrict"], state: ["pState"], country: ["pCountry"], nomination: ["pNomination"]
+    district: ["pDistrict"], state: ["pState"], country: ["pCountry", "pCountryTop"], nomination: ["pNomination"]
   };
   Object.entries(mapping).forEach(([field, targets]) => {
     targets.forEach(target => {
