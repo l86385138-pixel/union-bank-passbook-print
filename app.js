@@ -69,6 +69,7 @@ onAuthStateChanged(auth, async currentUser => {
       return;
     }
     role = profileSnap.data().role;
+    $("app").classList.toggle("retailer-mode", role === "retailer");
     $("login").classList.add("hidden");
     $("app").classList.remove("hidden");
     $("logout").classList.remove("hidden");
