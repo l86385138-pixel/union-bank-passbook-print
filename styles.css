@@ -419,3 +419,105 @@ main{max-width:1500px;margin:0 auto;padding:0}
     font-size: 5.5pt;
   }
 }
+
+
+/* Correct page-two reference layout: match the actual .ref-* elements in index.html. */
+@media print {
+  @page passbook-second {
+    size: 210mm 99mm;
+    margin: 0;
+  }
+  #printSheet .print-page-two {
+    page: passbook-second;
+    position: relative !important;
+    width: 210mm !important;
+    height: 99mm !important;
+    min-height: 99mm !important;
+    max-height: 99mm !important;
+    margin: 0 !important;
+    padding: 5mm 8mm 6mm !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    break-before: page !important;
+    page-break-before: always !important;
+    background: #fff !important;
+    color: #111 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+  #printSheet .print-page-two > .copy-warning,
+  #printSheet .print-page-two > h2,
+  #printSheet .print-page-two > .print-subtitle {
+    display: none !important;
+  }
+  #printSheet .print-page-two .page-two-reference {
+    display: grid !important;
+    grid-template-columns: 1.05fr 1.35fr 1fr !important;
+    grid-template-areas:
+      "branch . country"
+      "branch-address branch-address branch-phone"
+      "ifsc ifsc ifsc"
+      "account . account-type"
+      "name1 name2 name3"
+      "customer-id guardian aadhaar"
+      "address address address"
+      "village village village"
+      "post police district"
+      "state country2 mode"
+      "occupation opening issue"
+      "nomination nomination nomination" !important;
+    grid-auto-rows: minmax(0, auto) !important;
+    align-content: start !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    border: 0 !important;
+  }
+  #printSheet .print-page-two .ref-branch { grid-area: branch !important; }
+  #printSheet .print-page-two .ref-country { grid-area: country !important; }
+  #printSheet .print-page-two .ref-branch-address { grid-area: branch-address !important; }
+  #printSheet .print-page-two .ref-branch-phone { grid-area: branch-phone !important; }
+  #printSheet .print-page-two .ref-ifsc { grid-area: ifsc !important; }
+  #printSheet .print-page-two .ref-account { grid-area: account !important; }
+  #printSheet .print-page-two .ref-account-type { grid-area: account-type !important; }
+  #printSheet .print-page-two .ref-name1 { grid-area: name1 !important; }
+  #printSheet .print-page-two .ref-name2 { grid-area: name2 !important; }
+  #printSheet .print-page-two .ref-name3 { grid-area: name3 !important; }
+  #printSheet .print-page-two .ref-customer-id { grid-area: customer-id !important; }
+  #printSheet .print-page-two .ref-guardian { grid-area: guardian !important; }
+  #printSheet .print-page-two .ref-aadhaar { grid-area: aadhaar !important; }
+  #printSheet .print-page-two .ref-address { grid-area: address !important; }
+  #printSheet .print-page-two .ref-village { grid-area: village !important; }
+  #printSheet .print-page-two .ref-post { grid-area: post !important; }
+  #printSheet .print-page-two .ref-police { grid-area: police !important; }
+  #printSheet .print-page-two .ref-district { grid-area: district !important; }
+  #printSheet .print-page-two .ref-state { grid-area: state !important; }
+  #printSheet .print-page-two .ref-country2 { grid-area: country2 !important; }
+  #printSheet .print-page-two .ref-mode { grid-area: mode !important; }
+  #printSheet .print-page-two .ref-occupation { grid-area: occupation !important; }
+  #printSheet .print-page-two .ref-opening { grid-area: opening !important; }
+  #printSheet .print-page-two .ref-issue { grid-area: issue !important; }
+  #printSheet .print-page-two .ref-nomination { grid-area: nomination !important; }
+  #printSheet .print-page-two .page-two-reference > div {
+    min-width: 0 !important;
+    padding: 1.1mm 2.2mm !important;
+    border: 0 !important;
+    overflow-wrap: anywhere !important;
+    box-sizing: border-box !important;
+  }
+  #printSheet .print-page-two .page-two-reference small {
+    display: block !important;
+    margin: 0 0 0.7mm !important;
+    color: #111 !important;
+    font: 400 6.5pt/1.1 Arial, Helvetica, sans-serif !important;
+  }
+  #printSheet .print-page-two .page-two-reference b {
+    display: block !important;
+    color: #111 !important;
+    font: 400 8pt/1.2 Arial, Helvetica, sans-serif !important;
+    overflow-wrap: anywhere !important;
+  }
+  #printSheet .print-page-two .signature-note { display: none !important; }
+  #printSheet .print-page-two .copy-footer,
+  #printSheet .print-page-two .page-number { display: none !important; }
+}
