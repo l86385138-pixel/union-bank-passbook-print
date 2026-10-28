@@ -6,3 +6,27 @@
 #app.retailer-mode #customerForm.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 #app.retailer-mode #customerForm .wide{grid-column:1/-1}
 @media(max-width:600px){#app.retailer-mode #customerForm.grid{grid-template-columns:1fr}#app.retailer-mode #customerForm .wide{grid-column:auto}}
+
+/* Two-page customer reference printout; deliberately not a bank-document replica */
+#printSheet{display:none}
+@media print{
+  body{background:#fff!important}
+  #printSheet{display:block!important;color:#111;font-family:Arial,sans-serif}
+  #printSheet .print-page{display:block;min-height:255mm;position:relative;page-break-after:always;padding:4mm 2mm 12mm}
+  #printSheet .print-page:last-child{page-break-after:auto}
+  #printSheet .copy-warning{border:2px solid #a3262e;color:#a3262e;text-align:center;font-weight:700;font-size:11px;padding:8px;margin-bottom:18px}
+  #printSheet h2{text-align:center;margin:12px 0 5px;font-size:20px}
+  #printSheet .print-subtitle{text-align:center;color:#444;font-size:11px;margin:0 0 25px}
+  #printSheet .printgrid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #555;border-left:1px solid #555}
+  #printSheet .printgrid>div{padding:13px;border-right:1px solid #555;border-bottom:1px solid #555;min-height:62px;overflow-wrap:anywhere}
+  #printSheet .printgrid .wide{grid-column:1/-1}
+  #printSheet .printgrid small{display:block;margin-bottom:8px;color:#444;font-size:10px}
+  #printSheet .printgrid b{font-size:13px;font-weight:600}
+  #printSheet .copy-footer{position:absolute;bottom:13mm;left:2mm;right:2mm;border-top:1px solid #888;padding-top:8px;font-size:10px;text-align:center}
+  #printSheet .page-number{position:absolute;bottom:6mm;right:2mm;font-size:10px}
+  #printSheet .signature-note{margin-top:45px;text-align:right;font-size:11px}
+  #printSheet.print-only-one .print-page-two{display:none!important}
+  #printSheet.print-only-two .print-page-one{display:none!important}
+  #printSheet.print-only-one .print-page-one{page-break-after:auto}
+  #printSheet.print-only-two .print-page-two{page-break-after:auto}
+}
