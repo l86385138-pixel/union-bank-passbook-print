@@ -30,3 +30,48 @@
   #printSheet.print-only-one .print-page-one{page-break-after:auto}
   #printSheet.print-only-two .print-page-two{page-break-after:auto}
 }
+
+/* Great India Passbook dashboard theme */
+header{display:none}
+body{background:#f3f5f8;color:#172033;font:15px Arial,sans-serif}
+main{max-width:1500px;margin:0 auto;padding:0}
+#app{min-height:100vh}
+.welcome{position:sticky;top:0;z-index:4;border:0;border-radius:0;padding:16px 24px;margin:0;background:#fff;box-shadow:0 2px 7px #102b4310}
+.sidebar-layout{grid-template-columns:240px minmax(0,1fr);gap:0;min-height:calc(100vh - 54px)}
+.sidebar{background:#102b43;border-radius:0;padding:18px 12px;min-height:calc(100vh - 54px);position:sticky;top:54px;align-self:start;display:flex;flex-direction:column;gap:8px}
+.sidebar .brand{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 8px 24px}
+.brand-mark{display:flex;align-items:center;justify-content:center;width:64px;height:64px;border:4px solid #fff;border-radius:50%;background:#1769d2;color:#fff;font-size:38px;font-weight:800;margin-bottom:6px;box-shadow:0 2px 8px #0003}
+.sidebar .brand b{font-size:20px}
+.sidebar .brand small{font-weight:normal;font-size:13px}
+.sidebar button{padding:14px 16px;border-radius:7px;font-size:15px;font-weight:500}
+.sidebar button.active,.sidebar button:hover{background:#1976d2}
+.dash-content{padding:14px 22px 30px;background:#f3f5f8}
+.panel{border:0;border-radius:12px;padding:22px;margin-bottom:18px;box-shadow:0 3px 12px #102b4310}
+.dashboard-panel h2{color:#0753b8;font-size:20px;margin-top:0}
+.dashboard-panel>p{margin:18px 0 24px}
+.stat-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}
+.stat-card{border:0;border-radius:12px;box-shadow:0 3px 12px #102b4310;padding:20px}
+.stat-card strong{font-size:28px}
+.assigned-branch{background:#fff;border-radius:12px;padding:20px;margin:18px 0;box-shadow:0 3px 12px #102b430b}
+.assigned-branch h3{margin-top:0;color:#0753b8}
+.quick-actions{grid-template-columns:repeat(4,minmax(0,1fr))}
+.quick-actions button{min-height:60px}
+.logout-action{background:#e63145}
+#customerPanel h2,#recordsPanel h2,#retailerPanel h2{margin-top:0}
+#customerForm{gap:18px}
+#customerForm label{font-size:14px}
+#customerForm input,#customerForm select,#customerForm textarea{padding:12px;font-size:15px}
+#recordsPanel input#search{max-width:420px}
+@media(max-width:850px){
+ .sidebar-layout{grid-template-columns:1fr}
+ .sidebar{position:static;min-height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .sidebar .brand{grid-column:1/-1}
+ .dash-content{padding:12px}
+ .quick-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+ .welcome{padding:12px;flex-wrap:wrap}
+ .stat-grid{grid-template-columns:1fr}
+ .grid,#customerForm.grid{grid-template-columns:1fr}
+ .wide{grid-column:auto}
+}
