@@ -813,3 +813,25 @@ main{max-width:1500px;margin:0 auto;padding:0}
   #printSheet .ref-country, #printSheet .ref-state, #printSheet .ref-account-type { text-align: center !important; }
   #printSheet .copy-footer { text-align: center !important; }
 }
+
+
+/* Single-sheet override: main Print action outputs only page-two content. */
+@media print {
+  #printSheet.print-only-two .print-page-one {
+    display: none !important; visibility: hidden !important;
+    height: 0 !important; min-height: 0 !important; max-height: 0 !important;
+    margin: 0 !important; padding: 0 !important; border: 0 !important;
+    page-break-before: auto !important; page-break-after: auto !important;
+    break-before: auto !important; break-after: auto !important;
+  }
+  #printSheet.print-only-two .print-page-two {
+    display: block !important; visibility: visible !important;
+    page-break-before: auto !important; page-break-after: auto !important;
+    break-before: auto !important; break-after: auto !important;
+    page: auto !important;
+    width: 1600px !important; height: 900px !important;
+    min-height: 900px !important; max-height: 900px !important;
+    margin: 0 !important; padding: 0 !important; overflow: hidden !important;
+  }
+  #printSheet.print-only-two .print-page-two * { visibility: visible !important; }
+}
