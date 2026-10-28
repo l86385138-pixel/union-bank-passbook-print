@@ -24,7 +24,7 @@ let role = "";
 let records = [];
 let retailerRecords = [];
 
-const fields = ["customerName", "accountNumber", "branchName", "branchPhone", "branchAddress", "guardianName", "occupation", "address", "openingDate", "nomination"];
+const fields = ["customerName", "accountNumber", "branchName", "branchPhone", "branchAddress", "customerId", "guardianName", "relation", "aadhaarMasked", "name2", "name3", "occupation", "address", "openingDate", "nomination"];
 
 $("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
@@ -243,17 +243,34 @@ $("search").addEventListener("input", renderRecords);
 function preparePrint() {
   const data = formData();
   const mapping = {
-    customerName: "pName", accountNumber: "pAccount", branchName: "pBranch",
-    branchPhone: "pPhone", branchAddress: "pBranchAddress", guardianName: "pGuardian",
-    occupation: "pOccupation", address: "pAddress", openingDate: "pDate", nomination: "pNomination"
+    customerName: ["pName", "pName2"], accountNumber: ["pAccount", "pAccount2"],
+    branchName: ["pBranch", "pBranch2"], branchPhone: ["pPhone"],
+    branchAddress: ["pBranchAddress"], customerId: ["pCustomerId"],
+    guardianName: ["pGuardian"], relation: ["pRelation"],
+    aadhaarMasked: ["pAadhaar"], name2: ["pNameSecond"], name3: ["pNameThird"],
+    occupation: ["pOccupation"], address: ["pAddress"],
+    openingDate: ["pDate"], nomination: ["pNomination"]
   };
-  Object.entries(mapping).forEach(([field, target]) => { $(target).textContent = data[field] || "—"; });
+  Object.entries(mapping).forEach(([field, targets]) => {
+    targets.forEach(target => {
+      const element = $(target);
+      if (element) element.textContent = field === "aadhaarMasked" && data[field] ? "XXXX-XXXX-" + data[field] : (data[field] || "—");
+    });
+  });
 }
-$("print").addEventListener("click", () => {
+function printSelected(page) {
   if (!$("customerName").value.trim() || !$("accountNumber").value.trim()) {
     $("formMsg").textContent = "Customer Name और Account Number भरें।";
     return;
   }
   preparePrint();
+  const sheet = $("printSheet");
+  sheet.classList.remove("print-only-one", "print-only-two");
+  if (page === 1) sheet.classList.add("print-only-one");
+  if (page === 2) sheet.classList.add("print-only-two");
   window.print();
-});
+  window.setTimeout(() => sheet.classList.remove("print-only-one", "print-only-two"), 500);
+}
+$("print").addEventListener("click", () => printSelected(1));
+$("printPage2").addEventListener("click", () => printSelected(2));
+$("printBoth").addEventListener("click", () => printSelected(0));
