@@ -269,3 +269,75 @@ main{max-width:1500px;margin:0 auto;padding:0}
  #printSheet .page-two-reference b{font-size:10px}
  #printSheet .page-two-layout .signature-note{margin-top:10px;font-size:9px}
 }
+
+
+/* Final reference-layout correction for page 2: remove the red banner/title,
+   keep the page as a plain customer-entered information copy. */
+#printSheet .page-two-layout .copy-warning{display:none !important}
+#printSheet .page-two-layout h2,
+#printSheet .page-two-layout .print-subtitle{display:none !important}
+#printSheet .page-two-layout{padding:5mm 7mm 10mm;background:#fff;color:#111}
+#printSheet .page-two-reference{
+ display:grid;
+ grid-template-columns:1.15fr 1.15fr 1fr;
+ grid-template-areas:
+  "branch . country"
+  "branch-address branch-address branch-phone"
+  "ifsc ifsc ifsc"
+  "account . account-type"
+  "name1 name1 name1"
+  "customer-id guardian guardian"
+  "aadhaar aadhaar aadhaar"
+  "address address address"
+  "village village village"
+  "post police district"
+  "state country2 mode"
+  "occupation opening issue"
+  "nomination nomination nomination";
+ gap:0;
+ border:0;
+}
+#printSheet .page-two-reference>div{
+ min-width:0;
+ min-height:32px;
+ padding:7px 12px;
+ border:0;
+ overflow-wrap:anywhere;
+}
+#printSheet .page-two-reference small{
+ display:block;
+ margin:0 0 5px;
+ color:#111;
+ font-size:11px;
+ font-weight:400;
+}
+#printSheet .page-two-reference b{
+ display:block;
+ color:#111;
+ font-size:13px;
+ font-weight:400;
+ line-height:1.4;
+}
+#printSheet .page-two-reference .ref-account{grid-area:account}
+#printSheet .page-two-reference .ref-name1 b{font-weight:500}
+#printSheet .page-two-layout .signature-note{
+ margin-top:16px;
+ color:#333;
+ font-size:10px;
+}
+#printSheet .page-two-layout .copy-footer{
+ border:0;
+ color:#555;
+ font-size:9px;
+ margin-top:5px;
+}
+#printSheet .page-two-layout .page-number{
+ color:#777;
+ font-size:9px;
+}
+@media print{
+ #printSheet .page-two-layout{padding:5mm 7mm 10mm}
+ #printSheet .page-two-reference>div{min-height:30px;padding:6px 10px}
+ #printSheet .page-two-reference small{font-size:10px;margin-bottom:4px}
+ #printSheet .page-two-reference b{font-size:12px}
+}
