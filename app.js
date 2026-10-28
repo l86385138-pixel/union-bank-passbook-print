@@ -277,7 +277,11 @@ function preparePrint() {
       const element = $(target);
       if (element) {
         let value = field === "aadhaarMasked" && data[field] ? "XXXX-XXXX-" + data[field] : (data[field] || "—");
-        if (target === "pGuardian2") value = [data.guardianName, data.relation].filter(Boolean).join(" / ") || "—";
+        if (target === "pGuardian2") {
+          const legacy = { C: "C/O", D: "D/O", W: "W/O", H: "H/O", O: "S/O" };
+          const prefix = legacy[data.relation] || data.relation || "";
+          value = [prefix, data.guardianName].filter(Boolean).join(" ") || "—";
+        }
         element.textContent = value;
       }
     });
