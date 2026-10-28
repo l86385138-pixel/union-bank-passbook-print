@@ -62,7 +62,7 @@ main{max-width:1500px;margin:0 auto;padding:0}
 #customerForm label{font-size:14px}
 #customerForm input,#customerForm select,#customerForm textarea{padding:12px;font-size:15px}
 #recordsPanel input#search{max-width:420px}
-@media(max-width:850px){
+@media(max-width:600px){
  .sidebar-layout{grid-template-columns:1fr}
  .sidebar{position:static;min-height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
  .sidebar .brand{grid-column:1/-1}
@@ -87,7 +87,7 @@ main{max-width:1500px;margin:0 auto;padding:0}
 #app.retailer-mode .dashboard-panel .retailer-stat{display:none}
 #app.retailer-mode .quick-actions{grid-template-columns:repeat(3,minmax(0,1fr))}
 #app.retailer-mode .quick-actions #quickAddRetailer{display:none!important}
-@media(max-width:850px){
+@media(max-width:600px){
  #app.retailer-mode .sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
  #app.retailer-mode .quick-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
@@ -118,7 +118,7 @@ main{max-width:1500px;margin:0 auto;padding:0}
 #app.retailer-mode .sidebar button[data-target="recordsPanel"]{display:block}
 #app.retailer-mode .sidebar button.admin-only{display:none!important}
 #app.retailer-mode .sidebar::after{content:"";display:block;flex:1}
-@media(max-width:850px){
+@media(max-width:600px){
  #app.retailer-mode .sidebar-layout{grid-template-columns:1fr}
  #app.retailer-mode .sidebar{position:static;min-height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
  #app.retailer-mode .sidebar .brand{grid-column:1/-1}
@@ -130,4 +130,38 @@ main{max-width:1500px;margin:0 auto;padding:0}
  #app.retailer-mode #customerForm.grid{grid-template-columns:1fr}
  #app.retailer-mode #customerForm .wide{grid-column:auto}
  #app.retailer-mode .dashboard-panel .stat-grid{grid-template-columns:1fr}
+}
+
+/* HARD FIX: retailer desktop dashboard must match the reference layout */
+@media (min-width: 601px) {
+  #app.retailer-mode .sidebar-layout {
+    display: grid !important;
+    grid-template-columns: 240px minmax(0, 1fr) !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+  }
+  #app.retailer-mode .sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: none !important;
+    width: auto !important;
+    min-width: 240px !important;
+    min-height: 100vh !important;
+    position: sticky !important;
+    top: 0 !important;
+    align-self: start !important;
+  }
+  #app.retailer-mode .sidebar .brand { grid-column: auto !important; }
+  #app.retailer-mode .dash-content {
+    display: block !important;
+    width: auto !important;
+    min-width: 0 !important;
+    padding: 0 22px 30px !important;
+  }
+  #app.retailer-mode .portal-topbar {
+    margin: 0 -22px 20px !important;
+    padding: 14px 22px !important;
+  }
 }
