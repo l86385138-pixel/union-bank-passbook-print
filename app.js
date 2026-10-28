@@ -300,6 +300,6 @@ function printSelected(page) {
   window.print();
   window.setTimeout(() => sheet.classList.remove("print-only-one", "print-only-two"), 500);
 }
-$("print").addEventListener("click", () => printSelected(1));
+$("print").addEventListener("click", () => printSelected(2));
 $("printPage2").addEventListener("click", () => printSelected(2));
 $("printBoth").addEventListener("click", () => printSelected(0));
