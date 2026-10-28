@@ -8,7 +8,8 @@ service cloud.firestore {
   function retailer(){return profile() && role()=="retailer";}
   match /users/{uid} {
    allow read: if signedIn() && (request.auth.uid==uid || admin());
-   allow write: if false;
+   allow create: if admin() && request.resource.data.role=="retailer" && request.resource.data.createdBy==request.auth.uid;
+   allow update, delete: if false;
   }
   match /customers/{id} {
    allow create: if retailer() && request.resource.data.createdBy==request.auth.uid && request.resource.data.ownerUid==request.auth.uid;
