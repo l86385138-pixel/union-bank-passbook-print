@@ -294,9 +294,29 @@ function printSelected(page) {
   }
   preparePrint();
   const sheet = $("printSheet");
+  const originalChildren = Array.from(sheet.childNodes);
+  const originalClassName = sheet.className;
+
+  if (page === 2) {
+    // Render ONLY page two for printing. Page one is removed from the print DOM,
+    // not merely hidden, so its page-break rules cannot create an extra sheet.
+    const pageTwo = sheet.querySelector(".print-page-two");
+    if (!pageTwo) return;
+    sheet.classList.remove("print-only-one");
+    sheet.classList.add("print-only-two");
+    sheet.replaceChildren(pageTwo);
+    const restore = () => {
+      sheet.replaceChildren(...originalChildren);
+      sheet.className = originalClassName;
+      window.removeEventListener("afterprint", restore);
+    };
+    window.addEventListener("afterprint", restore, { once: true });
+    window.print();
+    return;
+  }
+
   sheet.classList.remove("print-only-one", "print-only-two");
   if (page === 1) sheet.classList.add("print-only-one");
-  if (page === 2) sheet.classList.add("print-only-two");
   window.print();
   window.setTimeout(() => sheet.classList.remove("print-only-one", "print-only-two"), 500);
 }
