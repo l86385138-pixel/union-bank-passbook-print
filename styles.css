@@ -688,3 +688,46 @@ main{max-width:1500px;margin:0 auto;padding:0}
   }
   #printSheet.print-only-two .print-page-two .page-number { display:none !important; }
 }
+
+
+/* Final pagination fix: when Print page 2 is selected, preserve a blank first
+   sheet so the page-two content lands on physical sheet 2. When printing both,
+   page two naturally follows page one. */
+@media print {
+  #printSheet.print-only-two .print-page-one {
+    display: block !important;
+    visibility: hidden !important;
+    height: 96mm !important;
+    min-height: 96mm !important;
+    max-height: 96mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+  #printSheet.print-only-two .print-page-one * {
+    visibility: hidden !important;
+  }
+  #printSheet.print-only-two .print-page-two {
+    display: block !important;
+    visibility: visible !important;
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+  #printSheet.print-only-two .print-page-two * {
+    visibility: visible !important;
+  }
+  #printSheet:not(.print-only-two) .print-page-one {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+  #printSheet:not(.print-only-two) .print-page-two {
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+}
