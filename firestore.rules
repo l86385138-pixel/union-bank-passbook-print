@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function signedIn(){return request.auth != null;}
+  function profile(){return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid));}
+  function role(){return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;}
+  function admin(){return profile() && role()=="admin";}
+  function retailer(){return profile() && role()=="retailer";}
+  match /users/{uid} {
+   allow read: if signedIn() && (request.auth.uid==uid || admin());
+   allow write: if false;
+  }
+  match /customers/{id} {
+   allow create: if retailer() && request.resource.data.createdBy==request.auth.uid && request.resource.data.ownerUid==request.auth.uid;
+   allow read: if admin() || (retailer() && resource.data.ownerUid==request.auth.uid);
+   allow update: if admin() || (retailer() && resource.data.ownerUid==request.auth.uid && request.resource.data.ownerUid==resource.data.ownerUid && request.resource.data.createdBy==resource.data.createdBy);
+   allow delete: if admin();
+  }
+ }
+}
