@@ -75,3 +75,19 @@ main{max-width:1500px;margin:0 auto;padding:0}
  .grid,#customerForm.grid{grid-template-columns:1fr}
  .wide{grid-column:auto}
 }
+
+/* Retailer dashboard for passbook-printing workflow */
+.admin-only{display:none}
+#app.retailer-mode .admin-only{display:none!important}
+#app.retailer-mode .sidebar{display:flex}
+#app.retailer-mode .sidebar button[data-target="dashboardPanel"],
+#app.retailer-mode .sidebar button[data-target="customerPanel"],
+#app.retailer-mode .sidebar button[data-target="recordsPanel"]{display:block}
+#app.retailer-mode .dashboard-panel .stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+#app.retailer-mode .dashboard-panel .retailer-stat{display:none}
+#app.retailer-mode .quick-actions{grid-template-columns:repeat(3,minmax(0,1fr))}
+#app.retailer-mode .quick-actions #quickAddRetailer{display:none!important}
+@media(max-width:850px){
+ #app.retailer-mode .sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ #app.retailer-mode .quick-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
