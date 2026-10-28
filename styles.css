@@ -521,3 +521,104 @@ main{max-width:1500px;margin:0 auto;padding:0}
   #printSheet .print-page-two .copy-footer,
   #printSheet .print-page-two .page-number { display: none !important; }
 }
+
+
+/* Pixel-positioned print calibration for page 2, based on the user's layout reference.
+   This remains a customer information copy, not a bank-issued passbook. */
+@media print {
+  @page passbook-second {
+    size: 210mm 96mm;
+    margin: 0;
+  }
+  #printSheet.print-only-two .print-page-two {
+    page: passbook-second !important;
+    position: relative !important;
+    width: 210mm !important;
+    height: 96mm !important;
+    min-height: 96mm !important;
+    max-height: 96mm !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    break-before: auto !important;
+    page-break-before: auto !important;
+    page-break-after: auto !important;
+    background: #fff !important;
+    color: #111 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+  #printSheet.print-only-two .print-page-two .copy-warning,
+  #printSheet.print-only-two .print-page-two h2,
+  #printSheet.print-only-two .print-page-two .print-subtitle,
+  #printSheet.print-only-two .print-page-two .signature-note {
+    display: none !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 210mm !important;
+    height: 96mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference > div {
+    position: absolute !important;
+    display: block !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    box-sizing: border-box !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference small {
+    display: none !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference b {
+    display: block !important;
+    color: #111 !important;
+    font: 400 8.5pt/1.22 Arial, Helvetica, sans-serif !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-wrap: normal !important;
+    white-space: normal !important;
+  }
+  #printSheet.print-only-two .ref-branch { left: 20.2mm !important; top: 6.2mm !important; }
+  #printSheet.print-only-two .ref-branch-address { left: 43.8mm !important; top: 10.8mm !important; width: 70mm !important; }
+  #printSheet.print-only-two .ref-branch-phone { left: 84.5mm !important; top: 17.0mm !important; }
+  #printSheet.print-only-two .ref-country { left: 157.8mm !important; top: 3.8mm !important; }
+  #printSheet.print-only-two .ref-state { left: 131.2mm !important; top: 12.7mm !important; }
+  #printSheet.print-only-two .ref-account-type { left: 142.8mm !important; top: 21.0mm !important; }
+  #printSheet.print-only-two .ref-ifsc { left: 81.5mm !important; top: 24.0mm !important; }
+  #printSheet.print-only-two .ref-account { left: 26.2mm !important; top: 35.8mm !important; }
+  #printSheet.print-only-two .ref-name1 { left: 12.5mm !important; top: 43.8mm !important; }
+  #printSheet.print-only-two .ref-name2 { left: 23.8mm !important; top: 43.8mm !important; }
+  #printSheet.print-only-two .ref-name3 { left: 48mm !important; top: 43.8mm !important; }
+  #printSheet.print-only-two .ref-customer-id { left: 70.3mm !important; top: 48.5mm !important; }
+  #printSheet.print-only-two .ref-guardian { left: 70.3mm !important; top: 54.3mm !important; }
+  #printSheet.print-only-two .ref-aadhaar { left: 71mm !important; top: 60.3mm !important; }
+  #printSheet.print-only-two .ref-address { left: 28.4mm !important; top: 70.0mm !important; width: 112mm !important; }
+  #printSheet.print-only-two .ref-opening { left: 30.3mm !important; top: 86.7mm !important; }
+  #printSheet.print-only-two .print-page-two .copy-footer {
+    display: block !important;
+    position: absolute !important;
+    left: 2mm !important;
+    right: 2mm !important;
+    bottom: 0.8mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    color: #555 !important;
+    font: 400 5pt/1 Arial, Helvetica, sans-serif !important;
+    text-align: right !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-number { display: none !important; }
+}
