@@ -204,3 +204,68 @@ main{max-width:1500px;margin:0 auto;padding:0}
   #printSheet .page-two-grid small{margin-bottom:4px;font-size:9px}
   #printSheet .page-two-grid b{font-size:11px}
 }
+
+/* Page 2: structured customer-information layout inspired by the submitted field order */
+#printSheet .page-two-reference{
+ display:grid;
+ grid-template-columns:1.15fr 1.15fr 1fr;
+ grid-template-areas:
+  "branch country account"
+  "branch-address branch-phone ifsc"
+  "account-type account-type account-type"
+  "name1 name1 name1"
+  "name2 name2 name3"
+  "customer-id guardian aadhaar"
+  "occupation opening issue"
+  "address address address"
+  "village village village"
+  "post police district"
+  "state country2 mode"
+  "nomination nomination nomination";
+ gap:0;
+ border:0;
+}
+#printSheet .page-two-reference>div{
+ min-width:0;
+ min-height:36px;
+ padding:8px 10px;
+ border:0;
+ overflow-wrap:anywhere;
+}
+#printSheet .page-two-reference small{display:block;margin:0 0 5px;color:#222;font-size:10px}
+#printSheet .page-two-reference b{display:block;font-size:12px;font-weight:500;line-height:1.35}
+#printSheet .page-two-reference .ref-branch{grid-area:branch}
+#printSheet .page-two-reference .ref-country{grid-area:country}
+#printSheet .page-two-reference .ref-branch-address{grid-area:branch-address}
+#printSheet .page-two-reference .ref-branch-phone{grid-area:branch-phone}
+#printSheet .page-two-reference .ref-ifsc{grid-area:ifsc}
+#printSheet .page-two-reference .ref-account{grid-area:account}
+#printSheet .page-two-reference .ref-account-type{grid-area:account-type}
+#printSheet .page-two-reference .ref-name1{grid-area:name1}
+#printSheet .page-two-reference .ref-name2{grid-area:name2}
+#printSheet .page-two-reference .ref-name3{grid-area:name3}
+#printSheet .page-two-reference .ref-customer-id{grid-area:customer-id}
+#printSheet .page-two-reference .ref-guardian{grid-area:guardian}
+#printSheet .page-two-reference .ref-aadhaar{grid-area:aadhaar}
+#printSheet .page-two-reference .ref-occupation{grid-area:occupation}
+#printSheet .page-two-reference .ref-opening{grid-area:opening}
+#printSheet .page-two-reference .ref-issue{grid-area:issue}
+#printSheet .page-two-reference .ref-address{grid-area:address}
+#printSheet .page-two-reference .ref-village{grid-area:village}
+#printSheet .page-two-reference .ref-post{grid-area:post}
+#printSheet .page-two-reference .ref-police{grid-area:police}
+#printSheet .page-two-reference .ref-district{grid-area:district}
+#printSheet .page-two-reference .ref-state{grid-area:state}
+#printSheet .page-two-reference .ref-country2{grid-area:country2}
+#printSheet .page-two-reference .ref-mode{grid-area:mode}
+#printSheet .page-two-reference .ref-nomination{grid-area:nomination}
+@media print{
+ #printSheet .page-two-layout{padding:3mm 3mm 12mm}
+ #printSheet .page-two-layout h2{margin:7px 0 3px;font-size:15px}
+ #printSheet .page-two-layout .print-subtitle{margin-bottom:8px}
+ #printSheet .page-two-layout .copy-warning{font-size:9px;padding:5px;margin-bottom:8px}
+ #printSheet .page-two-reference>div{min-height:32px;padding:6px 8px}
+ #printSheet .page-two-reference small{font-size:8px;margin-bottom:3px}
+ #printSheet .page-two-reference b{font-size:10px}
+ #printSheet .page-two-layout .signature-note{margin-top:10px;font-size:9px}
+}
