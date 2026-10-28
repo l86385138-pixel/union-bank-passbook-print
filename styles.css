@@ -785,3 +785,31 @@ main{max-width:1500px;margin:0 auto;padding:0}
   #printSheet .print-page-one { page: auto !important; }
   #printSheet .print-page-two { page: passbook-second !important; }
 }
+
+
+/* Print presentation: landscape, horizontally centered, 16:9, compact wide layout. */
+@media print {
+  @page { size: 16.6667in 9.375in landscape; margin: 0; }
+  html, body {
+    width: 1600px !important; min-width: 1600px !important;
+    margin: 0 !important; padding: 0 !important; background: #fff !important;
+  }
+  #printSheet {
+    width: 1600px !important; min-width: 1600px !important;
+    margin: 0 auto !important; padding: 0 !important; text-align: left !important;
+  }
+  #printSheet .print-page-one, #printSheet .print-page-two {
+    position: relative !important;
+    width: 1600px !important; height: 900px !important;
+    min-width: 1600px !important; min-height: 900px !important;
+    max-width: 1600px !important; max-height: 900px !important;
+    margin: 0 auto !important; padding: 0 !important;
+    box-sizing: border-box !important; overflow: hidden !important;
+    text-align: left !important; break-inside: avoid !important; page-break-inside: avoid !important;
+  }
+  #printSheet .print-page-one { page-break-after: always !important; break-after: page !important; }
+  #printSheet .print-page-two { page-break-before: always !important; break-before: page !important; }
+  #printSheet .printgrid, #printSheet .printgrid .wide, #printSheet .page-two-reference { text-align: left !important; }
+  #printSheet .ref-country, #printSheet .ref-state, #printSheet .ref-account-type { text-align: center !important; }
+  #printSheet .copy-footer { text-align: center !important; }
+}
