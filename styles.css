@@ -341,3 +341,81 @@ main{max-width:1500px;margin:0 auto;padding:0}
  #printSheet .page-two-reference small{font-size:10px;margin-bottom:4px}
  #printSheet .page-two-reference b{font-size:12px}
 }
+
+
+/* Page 2 size correction: compact landscape customer-information sheet.
+   Keep the non-bank-issued notice visible so this cannot be mistaken for a bank document. */
+@media print {
+  @page passbook-second {
+    size: 210mm 112mm;
+    margin: 0;
+  }
+  #printSheet .print-page-two {
+    page: passbook-second;
+    width: 210mm;
+    min-height: 112mm;
+    height: 112mm;
+    margin: 0;
+    padding: 5mm 7mm 4mm;
+    overflow: hidden;
+    break-before: page;
+    page-break-before: always;
+    box-sizing: border-box;
+  }
+  #printSheet .print-page-two .copy-warning {
+    display: block !important;
+    border: 1px solid #555;
+    color: #222;
+    font-size: 7pt;
+    padding: 1.5mm 2mm;
+    margin: 0 0 2mm;
+  }
+  #printSheet .print-page-two h2,
+  #printSheet .print-page-two .print-subtitle {
+    display: none !important;
+  }
+  #printSheet .print-page-two .page-two-reference {
+    grid-template-columns: 1.1fr 1.1fr 1fr;
+    grid-template-areas:
+      "branch . country"
+      "branch-address branch-address branch-phone"
+      "ifsc ifsc ifsc"
+      "account . account-type"
+      "name1 name2 name3"
+      "customer-id guardian aadhaar"
+      "address address address"
+      "village village village"
+      "post police district"
+      "state country2 mode"
+      "occupation opening issue"
+      "nomination nomination nomination";
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+  #printSheet .print-page-two .page-two-reference > div {
+    min-width: 0;
+    min-height: 0;
+    padding: 1.2mm 2mm;
+    overflow-wrap: anywhere;
+  }
+  #printSheet .print-page-two .page-two-reference small {
+    font-size: 6.5pt;
+    margin: 0 0 0.8mm;
+  }
+  #printSheet .print-page-two .page-two-reference b {
+    font-size: 8pt;
+    line-height: 1.15;
+    font-weight: 500;
+  }
+  #printSheet .print-page-two .copy-footer {
+    margin-top: 1mm;
+    font-size: 5.5pt;
+  }
+  #printSheet .print-page-two .page-number {
+    position: absolute;
+    bottom: 1.5mm;
+    right: 7mm;
+    font-size: 5.5pt;
+  }
+}
