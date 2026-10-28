@@ -165,3 +165,42 @@ main{max-width:1500px;margin:0 auto;padding:0}
     padding: 14px 22px !important;
   }
 }
+
+/* Page 2 layout refinement: branch/account header, customer details below */
+#printSheet .page-two-layout .page-two-grid{
+  display:grid;
+  grid-template-columns:1.15fr 1.15fr 1fr;
+  grid-template-areas:
+    "branch country account"
+    "branch-address branch-phone ifsc"
+    "customer customer customer"
+    "guardian guardian aadhaar"
+    "occupation opening issue"
+    "village village village"
+    "post police district"
+    "state country2 nomination"
+    "address address address";
+  border:0;
+  gap:0;
+}
+#printSheet .page-two-grid .field-branch{grid-area:branch}
+#printSheet .page-two-grid .field-country{grid-area:country}
+#printSheet .page-two-grid .field-account{grid-area:account}
+#printSheet .page-two-grid .field-branch-address{grid-area:branch-address}
+#printSheet .page-two-grid .field-branch-phone{grid-area:branch-phone}
+#printSheet .page-two-grid .field-ifsc{grid-area:ifsc}
+#printSheet .page-two-grid .field-customer{grid-area:customer}
+#printSheet .page-two-grid>div{min-height:48px;padding:9px 12px;border:0;border-bottom:1px solid #c8c8c8}
+#printSheet .page-two-grid .wide{grid-column:auto}
+#printSheet .page-two-grid .field-customer{border-top:1px solid #777;margin-top:7px}
+#printSheet .page-two-grid .field-customer b{font-size:16px}
+@media print{
+  #printSheet .page-two-layout{padding:3mm 3mm 12mm}
+  #printSheet .page-two-layout h2{margin:8px 0 4px;font-size:17px}
+  #printSheet .page-two-layout .print-subtitle{margin-bottom:10px}
+  #printSheet .page-two-layout .copy-warning{margin-bottom:10px}
+  #printSheet .page-two-grid{grid-template-columns:1.15fr 1.15fr 1fr}
+  #printSheet .page-two-grid>div{min-height:42px;padding:7px 10px}
+  #printSheet .page-two-grid small{margin-bottom:4px;font-size:9px}
+  #printSheet .page-two-grid b{font-size:11px}
+}
