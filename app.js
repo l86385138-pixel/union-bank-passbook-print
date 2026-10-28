@@ -24,7 +24,7 @@ let role = "";
 let records = [];
 let retailerRecords = [];
 
-const fields = ["customerName", "accountNumber", "branchName", "branchPhone", "branchAddress", "customerId", "guardianName", "relation", "aadhaarMasked", "name2", "name3", "occupation", "address", "openingDate", "nomination"];
+const fields = ["customerName", "accountNumber", "nameTitle", "branchName", "branchPhone", "branchAddress", "customerId", "guardianName", "relation", "aadhaarMasked", "name2", "name3", "occupation", "address", "openingDate", "issueDate", "modeOperation", "villageAddress", "postOffice", "policeStation", "district", "state", "country", "nomination"];
 
 $("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
@@ -86,6 +86,8 @@ onAuthStateChanged(auth, async currentUser => {
     showPanel(role === "admin" ? "dashboardPanel" : "customerPanel");
     await loadRecords();
     if (role === "admin") await loadRetailers();
+    const branchBox = $("assignedBranchInfo");
+    if (branchBox) branchBox.textContent = role === "retailer" ? "आपका branch assignment अभी profile में configure नहीं है। Admin से branch details confirm करें।" : "Admin Access — सभी customer records और retailer accounts manage कर सकते हैं।";
   } catch (error) {
     $("loginMsg").textContent = "Profile/load error: " + error.message;
   }
@@ -133,6 +135,7 @@ async function loadRecords() {
   const snapshot = await getDocs(recordsQuery);
   records = snapshot.docs.map(item => ({ id: item.id, ...item.data() }));
   $("count").textContent = String(records.length);
+  if ($("branchCount")) $("branchCount").textContent = String(new Set(records.map(item => item.branchName).filter(Boolean)).size);
   renderRecords();
 }
 
@@ -230,8 +233,9 @@ function renderRecords() {
     printButton.textContent = "Print";
     printButton.addEventListener("click", () => {
       fillForm(record);
+      showPanel("customerPanel");
       preparePrint();
-      window.print();
+      printSelected(0);
     });
     actions.append(printButton);
     row.append(actions);
@@ -243,13 +247,15 @@ $("search").addEventListener("input", renderRecords);
 function preparePrint() {
   const data = formData();
   const mapping = {
-    customerName: ["pName", "pName2"], accountNumber: ["pAccount", "pAccount2"],
+    customerName: ["pName", "pName2"], accountNumber: ["pAccount", "pAccount2"], nameTitle: ["pTitle"],
     branchName: ["pBranch", "pBranch2"], branchPhone: ["pPhone"],
     branchAddress: ["pBranchAddress"], customerId: ["pCustomerId"],
     guardianName: ["pGuardian"], relation: ["pRelation"],
     aadhaarMasked: ["pAadhaar"], name2: ["pNameSecond"], name3: ["pNameThird"],
     occupation: ["pOccupation"], address: ["pAddress"],
-    openingDate: ["pDate"], nomination: ["pNomination"]
+    openingDate: ["pDate"], issueDate: ["pIssueDate"], modeOperation: ["pModeOperation"],
+    villageAddress: ["pVillage"], postOffice: ["pPostOffice"], policeStation: ["pPoliceStation"],
+    district: ["pDistrict"], state: ["pState"], country: ["pCountry"], nomination: ["pNomination"]
   };
   Object.entries(mapping).forEach(([field, targets]) => {
     targets.forEach(target => {
