@@ -263,7 +263,7 @@ function preparePrint() {
   const data = formData();
   const mapping = {
     customerName: ["pName", "pName2"], accountNumber: ["pAccount", "pAccount2"], nameTitle: ["pTitle"],
-    branchName: ["pBranch", "pBranch2"], branchPhone: ["pPhone", "pPhone2"], ifscCode: ["pIfsc"], nameTitle: ["pTitle", "pTitle2"],
+    branchName: ["pBranch", "pBranch2"], branchPhone: ["pPhone", "pPhone2"], ifscCode: ["pIfsc"], nameTitle: ["pTitle", "pTitlePage2"],
     branchAddress: ["pBranchAddress", "pBranchAddress2"], customerId: ["pCustomerId", "pCustomerId2"],
     guardianName: ["pGuardian", "pGuardian2"], relation: ["pRelation", "pGuardian2"],
     aadhaarMasked: ["pAadhaar", "pAadhaar2"], name2: ["pNameSecond"], name3: ["pNameThird"],
