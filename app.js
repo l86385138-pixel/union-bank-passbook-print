@@ -49,9 +49,13 @@ function showPanel(id) {
   });
 }
 document.querySelectorAll("[data-target]").forEach(button => {
-  button.addEventListener("click", () => showPanel(button.dataset.target));
+  button.addEventListener("click", () => {
+    showPanel(button.dataset.target);
+    const title = {dashboardPanel:"Dashboard",customerPanel:"Passbook Print",recordsPanel:"Customer Records",retailerPanel:"Retailers"}[button.dataset.target] || "Dashboard";
+    if ($("portalPageTitle")) $("portalPageTitle").textContent = title;
+  });
 });
-$("quickAddRetailer").addEventListener("click", () => showPanel("retailerPanel"));
+$("quickAddRetailer").addEventListener("click", () => { showPanel("retailerPanel"); if ($("portalPageTitle")) $("portalPageTitle").textContent = "Retailers"; });
 
 onAuthStateChanged(auth, async currentUser => {
   user = currentUser;
@@ -70,6 +74,7 @@ onAuthStateChanged(auth, async currentUser => {
     }
     role = profileSnap.data().role;
     $("app").classList.toggle("retailer-mode", role === "retailer");
+    if ($("portalUserLabel")) $("portalUserLabel").textContent = (currentUser.email || "") + " | " + (role === "admin" ? "Admin" : "Retailer");
     $("login").classList.add("hidden");
     $("app").classList.remove("hidden");
     $("logout").classList.remove("hidden");
@@ -84,16 +89,19 @@ onAuthStateChanged(auth, async currentUser => {
     $("dashboardMessage").textContent = role === "admin"
       ? "Admin Panel — Retailers और customer records manage करें।"
       : "Retailer Panel — assigned branch के customer details भरें, passbook information print करें और saved records देखें।";
-    if ($("statOneLabel")) $("statOneLabel").textContent = role === "admin" ? "Branches" : "Saved Records";
+    if ($("portalPageTitle")) $("portalPageTitle").textContent = "Dashboard";
+    if ($("statOneLabel")) $("statOneLabel").textContent = role === "admin" ? "Branches" : "Saved Passbook Records";
     if ($("statThreeLabel")) $("statThreeLabel").textContent = role === "admin" ? "Customer Records" : "Recent Records";
     showPanel("dashboardPanel");
     await loadRecords();
     if (role === "admin") await loadRetailers();
     const branchBox = $("assignedBranchInfo");
+    const branchMeta = $("assignedBranchMeta");
     if (branchBox) {
       const profile = profileSnap.data();
-      const branchDetails = [profile.bankName, profile.branchName && ("Branch: " + profile.branchName), profile.branchCode && ("Branch Code: " + profile.branchCode), profile.ifsc && ("IFSC: " + profile.ifsc), profile.branchAddress && ("Address: " + profile.branchAddress)].filter(Boolean);
+      const branchDetails = [profile.bankName, profile.branchName && ("Branch: " + profile.branchName), profile.branchCode && ("Branch Code: " + profile.branchCode), profile.ifsc && ("IFSC: " + profile.ifsc), profile.micr && ("MICR: " + profile.micr), profile.branchAddress && ("Address: " + profile.branchAddress)].filter(Boolean);
       branchBox.textContent = role === "retailer" ? (branchDetails.length ? branchDetails.join(" • ") : "आपकी Branch details अभी assign नहीं हैं। Admin से branch assignment करवाएँ।") : "Admin Access — सभी customer records और retailer accounts manage कर सकते हैं।";
+      if (branchMeta) branchMeta.textContent = role === "retailer" ? "Passbook Format: " + (profile.passbookFormat || "Not Assigned") : "";
     }
   } catch (error) {
     $("loginMsg").textContent = "Profile/load error: " + error.message;
@@ -142,7 +150,7 @@ async function loadRecords() {
   const snapshot = await getDocs(recordsQuery);
   records = snapshot.docs.map(item => ({ id: item.id, ...item.data() }));
   $("count").textContent = String(records.length);
-  if ($("branchCount")) $("branchCount").textContent = String(new Set(records.map(item => item.branchName).filter(Boolean)).size);
+  if ($("branchCount")) $("branchCount").textContent = String(records.length);
   renderRecords();
 }
 
