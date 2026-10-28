@@ -75,7 +75,7 @@ onAuthStateChanged(auth, async currentUser => {
     $("logout").classList.remove("hidden");
     $("userEmail").textContent = currentUser.email || "";
     $("role").textContent = role.toUpperCase();
-    if ($("roleStat")) $("roleStat").textContent = role.toUpperCase();
+    if ($("roleStat")) if ($("roleStat")) $("roleStat").textContent = role.toUpperCase();
     $("admin").classList.toggle("hidden", role !== "admin");
     $("sidebar").classList.remove("hidden");
     document.querySelectorAll(".admin-only").forEach(el => el.classList.toggle("hidden", role !== "admin"));
