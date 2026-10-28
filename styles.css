@@ -731,3 +731,49 @@ main{max-width:1500px;margin:0 auto;padding:0}
     break-after: auto !important;
   }
 }
+
+
+/* Requested print canvas: 1600 × 900 px (16:9), landscape.
+   Print size is 16.667 × 9.375 inches at CSS 96 dpi; field positions scale
+   proportionally from the existing calibrated reference layout. */
+@media print {
+  @page passbook-second { size: 16.6667in 9.375in; margin: 0; }
+  #printSheet .print-page {
+    width: 1600px !important;
+    height: 900px !important;
+    min-height: 900px !important;
+    max-height: 900px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  #printSheet.print-only-two .print-page-two {
+    page: passbook-second !important;
+    width: 1600px !important;
+    height: 900px !important;
+    min-height: 900px !important;
+    max-height: 900px !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference {
+    width: 210mm !important;
+    height: 96mm !important;
+    transform: scale(2.016, 2.480) !important;
+    transform-origin: top left !important;
+  }
+  #printSheet.print-only-two .print-page-one {
+    width: 1600px !important;
+    height: 900px !important;
+    min-height: 900px !important;
+    max-height: 900px !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+  #printSheet:not(.print-only-two) .print-page-one,
+  #printSheet:not(.print-only-two) .print-page-two {
+    width: 1600px !important;
+    height: 900px !important;
+    min-height: 900px !important;
+    max-height: 900px !important;
+  }
+}
