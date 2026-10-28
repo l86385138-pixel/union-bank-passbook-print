@@ -777,3 +777,11 @@ main{max-width:1500px;margin:0 auto;padding:0}
     max-height: 900px !important;
   }
 }
+
+
+/* Apply the 16:9 custom paper to every printed sheet, including page 1/blank page. */
+@media print {
+  @page { size: 16.6667in 9.375in; margin: 0; }
+  #printSheet .print-page-one { page: auto !important; }
+  #printSheet .print-page-two { page: passbook-second !important; }
+}
