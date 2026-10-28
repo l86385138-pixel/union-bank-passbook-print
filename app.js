@@ -263,10 +263,10 @@ function preparePrint() {
   const data = formData();
   const mapping = {
     customerName: ["pName", "pName2"], accountNumber: ["pAccount", "pAccount2"], nameTitle: ["pTitle"],
-    branchName: ["pBranch", "pBranch2"], branchPhone: ["pPhone", "pPhone2"], ifscCode: ["pIfsc"],
-    branchAddress: ["pBranchAddress", "pBranchAddress2"], customerId: ["pCustomerId"],
-    guardianName: ["pGuardian"], relation: ["pRelation"],
-    aadhaarMasked: ["pAadhaar"], name2: ["pNameSecond"], name3: ["pNameThird"],
+    branchName: ["pBranch", "pBranch2"], branchPhone: ["pPhone", "pPhone2"], ifscCode: ["pIfsc"], nameTitle: ["pTitle", "pTitle2"],
+    branchAddress: ["pBranchAddress", "pBranchAddress2"], customerId: ["pCustomerId", "pCustomerId2"],
+    guardianName: ["pGuardian", "pGuardian2"], relation: ["pRelation", "pGuardian2"],
+    aadhaarMasked: ["pAadhaar", "pAadhaar2"], name2: ["pNameSecond"], name3: ["pNameThird"],
     occupation: ["pOccupation"], address: ["pAddress"],
     openingDate: ["pDate"], issueDate: ["pIssueDate"], modeOperation: ["pModeOperation"],
     villageAddress: ["pVillage"], postOffice: ["pPostOffice"], policeStation: ["pPoliceStation"],
@@ -275,7 +275,11 @@ function preparePrint() {
   Object.entries(mapping).forEach(([field, targets]) => {
     targets.forEach(target => {
       const element = $(target);
-      if (element) element.textContent = field === "aadhaarMasked" && data[field] ? "XXXX-XXXX-" + data[field] : (data[field] || "—");
+      if (element) {
+        let value = field === "aadhaarMasked" && data[field] ? "XXXX-XXXX-" + data[field] : (data[field] || "—");
+        if (target === "pGuardian2") value = [data.guardianName, data.relation].filter(Boolean).join(" / ") || "—";
+        element.textContent = value;
+      }
     });
   });
 }
