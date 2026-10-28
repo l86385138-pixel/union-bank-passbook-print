@@ -75,19 +75,26 @@ onAuthStateChanged(auth, async currentUser => {
     $("logout").classList.remove("hidden");
     $("userEmail").textContent = currentUser.email || "";
     $("role").textContent = role.toUpperCase();
-    $("roleStat").textContent = role.toUpperCase();
+    if ($("roleStat")) $("roleStat").textContent = role.toUpperCase();
     $("admin").classList.toggle("hidden", role !== "admin");
-    $("sidebar").classList.toggle("hidden", role !== "admin");
+    $("sidebar").classList.remove("hidden");
+    document.querySelectorAll(".admin-only").forEach(el => el.classList.toggle("hidden", role !== "admin"));
     $("quickAddRetailer").classList.toggle("hidden", role !== "admin");
     $("retailerPanel").classList.toggle("hidden", role !== "admin");
     $("dashboardMessage").textContent = role === "admin"
       ? "Admin Panel — Retailers और customer records manage करें।"
-      : "Retailer Panel — अपने customer records manage करें।";
-    showPanel(role === "admin" ? "dashboardPanel" : "customerPanel");
+      : "Retailer Panel — assigned branch के customer details भरें, passbook information print करें और saved records देखें।";
+    if ($("statOneLabel")) $("statOneLabel").textContent = role === "admin" ? "Branches" : "Saved Records";
+    if ($("statThreeLabel")) $("statThreeLabel").textContent = role === "admin" ? "Customer Records" : "Recent Records";
+    showPanel("dashboardPanel");
     await loadRecords();
     if (role === "admin") await loadRetailers();
     const branchBox = $("assignedBranchInfo");
-    if (branchBox) branchBox.textContent = role === "retailer" ? "आपका branch assignment अभी profile में configure नहीं है। Admin से branch details confirm करें।" : "Admin Access — सभी customer records और retailer accounts manage कर सकते हैं।";
+    if (branchBox) {
+      const profile = profileSnap.data();
+      const branchDetails = [profile.bankName, profile.branchName && ("Branch: " + profile.branchName), profile.branchCode && ("Branch Code: " + profile.branchCode), profile.ifsc && ("IFSC: " + profile.ifsc), profile.branchAddress && ("Address: " + profile.branchAddress)].filter(Boolean);
+      branchBox.textContent = role === "retailer" ? (branchDetails.length ? branchDetails.join(" • ") : "आपकी Branch details अभी assign नहीं हैं। Admin से branch assignment करवाएँ।") : "Admin Access — सभी customer records और retailer accounts manage कर सकते हैं।";
+    }
   } catch (error) {
     $("loginMsg").textContent = "Profile/load error: " + error.message;
   }
