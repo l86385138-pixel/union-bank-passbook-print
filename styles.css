@@ -1167,3 +1167,72 @@ main{max-width:1500px;margin:0 auto;padding:0}
   #printSheet.print-only-two .print-page-two .signature-note,
   #printSheet.print-only-two .print-page-two .page-number { display:none!important; }
 }
+
+
+/* Larger landscape sheet for readable, clearly non-official customer details.
+   This is not a reproduction of a bank-issued passbook form. */
+@media print {
+  @page { size: 270mm 130mm landscape; margin: 0; }
+  html, body {
+    width:270mm!important; height:130mm!important; margin:0!important; padding:0!important;
+    overflow:hidden!important; background:#fff!important;
+  }
+  #printSheet.print-only-two {
+    display:block!important; position:relative!important; width:270mm!important; height:130mm!important;
+    margin:0!important; padding:0!important; overflow:hidden!important;
+  }
+  #printSheet.print-only-two .print-page-one { display:none!important; }
+  #printSheet.print-only-two .print-page-two {
+    display:flex!important; flex-direction:column!important; position:relative!important;
+    width:270mm!important; height:130mm!important; min-width:0!important; min-height:0!important;
+    margin:0!important; padding:5mm 7mm 4mm!important; box-sizing:border-box!important;
+    overflow:hidden!important; transform:none!important; break-before:auto!important; break-after:auto!important;
+    font-family:Arial,Helvetica,sans-serif!important; color:#111!important;
+  }
+  #printSheet.print-only-two .print-page-two .copy-warning {
+    display:block!important; position:static!important; flex:none!important; width:100%!important;
+    margin:0 0 2mm!important; padding:1.2mm!important; box-sizing:border-box!important;
+    border:.3mm solid #555!important; text-align:center!important;
+    font:700 8pt Arial,sans-serif!important; line-height:1.15!important;
+  }
+  #printSheet.print-only-two .print-page-two h2 {
+    display:block!important; position:static!important; flex:none!important; margin:0 0 1mm!important;
+    padding:0!important; text-align:center!important; font:700 11pt Arial,sans-serif!important; line-height:1.15!important;
+  }
+  #printSheet.print-only-two .print-page-two .print-subtitle {
+    display:block!important; position:static!important; flex:none!important; margin:0 0 2mm!important;
+    text-align:center!important; font:7pt Arial,sans-serif!important; line-height:1.15!important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference {
+    display:grid!important; position:static!important; flex:1 1 auto!important; width:100%!important;
+    height:auto!important; min-height:0!important; grid-template-columns:1.1fr 1.3fr 1fr!important;
+    grid-auto-flow:row!important; grid-auto-rows:minmax(0,1fr)!important; gap:1.2mm 2mm!important;
+    margin:0!important; padding:0!important; transform:none!important; overflow:hidden!important;
+    align-content:stretch!important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference > div {
+    display:flex!important; position:static!important; inset:auto!important; grid-area:auto!important;
+    grid-column:auto!important; grid-row:auto!important; float:none!important; width:auto!important; height:auto!important;
+    min-width:0!important; min-height:0!important; max-width:none!important; max-height:none!important;
+    margin:0!important; padding:1mm 1.5mm!important; box-sizing:border-box!important; overflow:hidden!important;
+    border:.2mm solid #aaa!important; border-radius:0!important; flex-direction:column!important;
+    justify-content:center!important; align-items:flex-start!important; text-align:left!important;
+    transform:none!important; overflow-wrap:anywhere!important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference small {
+    display:block!important; flex:none!important; margin:0 0 .6mm!important; padding:0!important;
+    font:7pt Arial,sans-serif!important; line-height:1.05!important; color:#333!important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference b {
+    display:block!important; margin:0!important; padding:0!important; font:400 9pt Arial,sans-serif!important;
+    line-height:1.15!important; color:#111!important; overflow-wrap:anywhere!important; white-space:normal!important;
+  }
+  #printSheet.print-only-two .print-page-two .copy-footer {
+    display:block!important; position:static!important; flex:none!important; left:auto!important; right:auto!important;
+    bottom:auto!important; width:100%!important; margin:2mm 0 0!important; padding:1.2mm 0 0!important;
+    border-top:.25mm solid #777!important; text-align:center!important;
+    font:7pt Arial,sans-serif!important; line-height:1.15!important; white-space:normal!important;
+  }
+  #printSheet.print-only-two .print-page-two .signature-note,
+  #printSheet.print-only-two .print-page-two .page-number { display:none!important; }
+}
