@@ -958,3 +958,57 @@ main{max-width:1500px;margin:0 auto;padding:0}
     text-align: left !important;
   }
 }
+
+
+/* Compact passbook-leaf-sized print for the non-official customer information copy.
+   180 × 100 mm is an approximation only; select the matching custom paper in driver. */
+@media print {
+  @page { size: 180mm 100mm landscape; margin: 0; }
+  html, body {
+    width: 180mm !important; height: 100mm !important;
+    min-width: 0 !important; margin: 0 !important; padding: 0 !important;
+    overflow: hidden !important; background: #fff !important;
+  }
+  #printSheet.print-only-two {
+    display: block !important; position: relative !important;
+    width: 180mm !important; height: 100mm !important;
+    margin: 0 auto !important; padding: 0 !important; overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+  #printSheet.print-only-two .print-page-two {
+    display: block !important; position: relative !important;
+    width: 180mm !important; height: 100mm !important;
+    min-width: 0 !important; min-height: 0 !important;
+    max-width: 180mm !important; max-height: 100mm !important;
+    margin: 0 auto !important; padding: 3mm 4mm 5mm !important;
+    box-sizing: border-box !important; overflow: hidden !important;
+    transform: none !important; page-break: auto !important; break-before: auto !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference {
+    display: grid !important; position: relative !important;
+    left: auto !important; top: auto !important;
+    width: 172mm !important; height: auto !important;
+    margin: 0 auto !important; padding: 0 !important;
+    transform: none !important; transform-origin: top left !important;
+    gap: 0 !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference > div {
+    min-height: 5mm !important; padding: 1.2mm 1.5mm !important;
+    box-sizing: border-box !important; overflow-wrap: anywhere !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference small {
+    font-size: 6pt !important; line-height: 1.05 !important; margin: 0 0 0.5mm !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference b {
+    font-size: 7pt !important; line-height: 1.1 !important; font-weight: 400 !important;
+  }
+  #printSheet.print-only-two .print-page-two .copy-footer,
+  #printSheet.print-only-two .print-page-two .signature-note {
+    display: block !important; position: absolute !important;
+    left: 4mm !important; right: 4mm !important; bottom: 1mm !important;
+    margin: 0 !important; font-size: 5.5pt !important; line-height: 1 !important;
+    text-align: center !important; color: #111 !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-number { display: none !important; }
+  #printSheet.print-only-two .print-page-one { display: none !important; }
+}
