@@ -1058,3 +1058,43 @@ main{max-width:1500px;margin:0 auto;padding:0}
     letter-spacing: .2px !important;
   }
 }
+
+
+/* Reflow the non-official customer information copy into a compact, readable grid. */
+@media print {
+  @page { size: 180mm 100mm landscape; margin: 0; }
+  html, body { width:180mm!important; height:100mm!important; margin:0!important; padding:0!important; overflow:hidden!important; }
+  #printSheet.print-only-two { display:block!important; position:relative!important; width:180mm!important; height:100mm!important; margin:0!important; padding:0!important; overflow:hidden!important; }
+  #printSheet.print-only-two .print-page-two {
+    display:block!important; position:relative!important; width:180mm!important; height:100mm!important;
+    min-width:0!important; min-height:0!important; margin:0!important; padding:4mm!important;
+    box-sizing:border-box!important; overflow:hidden!important; transform:none!important;
+    page-break-before:auto!important; break-before:auto!important; page-break-after:auto!important; break-after:auto!important;
+    font-family:Arial,Helvetica,sans-serif!important;
+  }
+  #printSheet.print-only-two .print-page-two .copy-warning {
+    display:block!important; position:static!important; width:100%!important; margin:0 0 1.5mm!important;
+    padding:1mm!important; box-sizing:border-box!important; text-align:center!important;
+    font:700 6.5pt Arial,sans-serif!important; border:.3mm solid #555!important;
+  }
+  #printSheet.print-only-two .print-page-two h2 { display:block!important; position:static!important; margin:0 0 1mm!important; padding:0!important; font:700 9pt Arial,sans-serif!important; }
+  #printSheet.print-only-two .print-page-two .print-subtitle { display:block!important; position:static!important; margin:0 0 1.5mm!important; font:6pt Arial,sans-serif!important; }
+  #printSheet.print-only-two .print-page-two .page-two-reference {
+    display:grid!important; position:static!important; width:100%!important; height:auto!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important; grid-auto-rows:minmax(7mm,auto)!important;
+    gap:1mm 1.5mm!important; margin:0!important; padding:0!important; transform:none!important; overflow:visible!important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference > div {
+    display:flex!important; position:static!important; inset:auto!important; width:auto!important; height:auto!important;
+    min-width:0!important; min-height:7mm!important; max-width:none!important; max-height:none!important;
+    margin:0!important; padding:1mm!important; box-sizing:border-box!important; overflow:hidden!important;
+    border:.2mm solid #bbb!important; flex-direction:column!important; justify-content:center!important;
+    overflow-wrap:anywhere!important; transform:none!important; text-align:left!important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference small { display:block!important; margin:0 0 .5mm!important; font:5.5pt Arial,sans-serif!important; line-height:1.05!important; color:#333!important; }
+  #printSheet.print-only-two .print-page-two .page-two-reference b { display:inline!important; margin:0!important; padding:0!important; font:400 7pt Arial,sans-serif!important; line-height:1.15!important; color:#111!important; overflow-wrap:anywhere!important; }
+  #printSheet.print-only-two .print-page-two .copy-footer,
+  #printSheet.print-only-two .print-page-two .signature-note { display:block!important; position:absolute!important; left:4mm!important; right:4mm!important; bottom:1mm!important; margin:0!important; text-align:center!important; font:5pt Arial,sans-serif!important; }
+  #printSheet.print-only-two .print-page-two .page-number,
+  #printSheet.print-only-two .print-page-one { display:none!important; }
+}
