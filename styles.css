@@ -1340,3 +1340,33 @@ main{max-width:1500px;margin:0 auto;padding:0}
   #printSheet.print-only-two .print-page-two .signature-note,
   #printSheet.print-only-two .print-page-two .page-number { display:none!important; }
 }
+
+/* Unboxed compact landscape customer-information print layout; not an official bank form replica. */
+@media print {
+ @page{size:180mm 100mm landscape;margin:0}
+ html,body{width:180mm!important;height:100mm!important;margin:0!important;padding:0!important;overflow:hidden!important;background:#fff!important}
+ #printSheet.print-only-two{display:block!important;position:relative!important;width:180mm!important;height:100mm!important;margin:0!important;padding:0!important;overflow:hidden!important}
+ #printSheet.print-only-two .print-page-one{display:none!important}
+ #printSheet.print-only-two .print-page-two{display:flex!important;position:relative!important;flex-direction:column!important;width:180mm!important;height:100mm!important;min-height:0!important;margin:0!important;padding:3mm 3mm!important;box-sizing:border-box!important;overflow:hidden!important;transform:none!important;break-after:auto!important;page-break-after:auto!important;font-family:"Courier New",monospace!important;color:#111!important;background:#fff!important}
+ #printSheet.print-only-two .print-page-two>.copy-warning{display:block!important;position:static!important;flex:none!important;align-self:flex-end!important;width:76%!important;margin:0 0 1mm auto!important;padding:0!important;border:0!important;text-align:right!important;font:700 5pt Arial,sans-serif!important;line-height:1!important}
+ #printSheet.print-only-two .print-page-two>h2,#printSheet.print-only-two .print-page-two>.print-subtitle{display:none!important}
+ #printSheet.print-only-two .print-page-two .page-two-reference{display:grid!important;position:static!important;align-self:flex-end!important;flex:1 1 auto!important;width:82%!important;height:auto!important;min-height:0!important;margin:0 0 0 auto!important;padding:0!important;box-sizing:border-box!important;overflow:hidden!important;grid-template-columns:1.15fr 1.3fr .95fr!important;grid-template-rows:repeat(12,minmax(0,1fr))!important;grid-template-areas:"branch . country" "branch-address branch-address branch-phone" "account ifsc ifsc" "name1 name1-value account-type" "name2 name3 account-type" "customer-id guardian aadhaar" "address address address" "village post police" "district state country2" "occupation opening issue" "mode mode nomination" "mode mode nomination"!important;gap:.25mm 1.5mm!important;align-content:stretch!important}
+ #printSheet.print-only-two .page-two-reference>div{display:flex!important;position:static!important;inset:auto!important;float:none!important;grid-area:auto!important;width:auto!important;height:auto!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;box-sizing:border-box!important;overflow:hidden!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;flex-direction:column!important;justify-content:center!important;align-items:flex-start!important;text-align:left!important;transform:none!important;overflow-wrap:anywhere!important}
+ #printSheet.print-only-two .ref-branch{grid-area:branch!important} #printSheet.print-only-two .ref-country{grid-area:country!important}
+ #printSheet.print-only-two .ref-branch-address{grid-area:branch-address!important} #printSheet.print-only-two .ref-branch-phone{grid-area:branch-phone!important}
+ #printSheet.print-only-two .ref-ifsc{grid-area:ifsc!important} #printSheet.print-only-two .ref-account{grid-area:account!important}
+ #printSheet.print-only-two .ref-account-type{grid-area:account-type!important} #printSheet.print-only-two .ref-name1{grid-area:name1!important}
+ #printSheet.print-only-two .ref-name1-value{grid-area:name1-value!important} #printSheet.print-only-two .ref-name2{grid-area:name2!important}
+ #printSheet.print-only-two .ref-name3{grid-area:name3!important} #printSheet.print-only-two .ref-customer-id{grid-area:customer-id!important}
+ #printSheet.print-only-two .ref-guardian{grid-area:guardian!important} #printSheet.print-only-two .ref-aadhaar{grid-area:aadhaar!important}
+ #printSheet.print-only-two .ref-address{grid-area:address!important} #printSheet.print-only-two .ref-village{grid-area:village!important}
+ #printSheet.print-only-two .ref-post{grid-area:post!important} #printSheet.print-only-two .ref-police{grid-area:police!important}
+ #printSheet.print-only-two .ref-district{grid-area:district!important} #printSheet.print-only-two .ref-state{grid-area:state!important}
+ #printSheet.print-only-two .ref-country2{grid-area:country2!important} #printSheet.print-only-two .ref-occupation{grid-area:occupation!important}
+ #printSheet.print-only-two .ref-opening{grid-area:opening!important} #printSheet.print-only-two .ref-issue{grid-area:issue!important}
+ #printSheet.print-only-two .ref-mode{grid-area:mode!important} #printSheet.print-only-two .ref-nomination{grid-area:nomination!important}
+ #printSheet.print-only-two .page-two-reference small{display:block!important;flex:none!important;margin:0 0 .1mm!important;padding:0!important;font:4.5pt "Courier New",monospace!important;line-height:1!important;color:#111!important}
+ #printSheet.print-only-two .page-two-reference b{display:block!important;margin:0!important;padding:0!important;font:400 6.5pt "Courier New",monospace!important;line-height:1.04!important;color:#111!important;white-space:normal!important;overflow-wrap:anywhere!important}
+ #printSheet.print-only-two .print-page-two>.copy-footer{display:block!important;position:static!important;flex:none!important;align-self:flex-end!important;width:82%!important;margin:1mm 0 0 auto!important;padding:.3mm 0 0!important;border:0!important;border-top:.15mm solid #777!important;text-align:right!important;font:4.5pt Arial,sans-serif!important;line-height:1!important}
+ #printSheet.print-only-two .signature-note,#printSheet.print-only-two .page-number{display:none!important}
+}
