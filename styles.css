@@ -894,3 +894,39 @@ main{max-width:1500px;margin:0 auto;padding:0}
   }
   #printSheet.print-only-two .print-page-one { display: none !important; }
 }
+
+
+/* Compact print sheet: reduce both width and height, keep landscape and center. */
+@media print {
+  @page { size: 250mm 130mm landscape; margin: 0; }
+  html, body {
+    width: 250mm !important;
+    height: 130mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  #printSheet.print-only-two {
+    width: 250mm !important;
+    height: 130mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  #printSheet.print-only-two .print-page-two {
+    width: 250mm !important;
+    height: 130mm !important;
+    min-height: 130mm !important;
+    max-height: 130mm !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference {
+    width: 210mm !important;
+    height: 96mm !important;
+    transform: scale(1.190476, 1.354167) !important;
+    transform-origin: top left !important;
+  }
+}
