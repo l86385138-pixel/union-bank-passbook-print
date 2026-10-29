@@ -1012,3 +1012,20 @@ main{max-width:1500px;margin:0 auto;padding:0}
   #printSheet.print-only-two .print-page-two .page-number { display: none !important; }
   #printSheet.print-only-two .print-page-one { display: none !important; }
 }
+
+
+/* User-requested horizontal right alignment for the compact landscape print. */
+@media print {
+  #printSheet.print-only-two {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+  #printSheet.print-only-two .print-page-two {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+}
