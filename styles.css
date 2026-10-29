@@ -1029,3 +1029,32 @@ main{max-width:1500px;margin:0 auto;padding:0}
     margin-right: 0 !important;
   }
 }
+
+
+/* Final alignment adjustment for the separate non-official customer information sheet.
+   Shift the printed content slightly right within the compact landscape sheet. */
+@media print {
+  #printSheet.print-only-two .print-page-two {
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  #printSheet.print-only-two .print-page-two .page-two-reference {
+    margin-left: 5mm !important;
+    margin-right: 0 !important;
+    transform: translateX(5mm) !important;
+    transform-origin: top left !important;
+  }
+  /* Clearly distinguish this from a bank-issued passbook/document. */
+  #printSheet.print-only-two .print-page-two::after {
+    content: "CUSTOMER COPY - NOT BANK ISSUED";
+    position: absolute !important;
+    left: 4mm !important;
+    right: 4mm !important;
+    bottom: 1mm !important;
+    display: block !important;
+    text-align: center !important;
+    font: 6pt Arial, Helvetica, sans-serif !important;
+    color: #333 !important;
+    letter-spacing: .2px !important;
+  }
+}
